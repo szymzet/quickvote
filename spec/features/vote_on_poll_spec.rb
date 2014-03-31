@@ -8,11 +8,7 @@ feature 'Vote on poll' do
     visit root_path
     create_poll('Choose', 'first, second')
     click_on('second')
-    within('#poll') do
-      first_votes = find('.question', text: 'first').find('.votes')
-      second_votes = find('.question', text: 'second').find('.votes')
-      expect(first_votes.text).to eq '0'
-      expect(second_votes.text).to eq '1'
-    end
+    expect_vote_count('first', 0)
+    expect_vote_count('second', 1)
   end
 end

@@ -16,10 +16,7 @@ feature 'Create a poll' do
     visit root_path
     create_poll('Choose', 'first, second')
 
-    votes = all('#poll .question .votes')
-    expect(votes.count).to eq 2
-    votes.each do |vote_count|
-      expect(vote_count.text).to eq '0'
-    end
+    expect_vote_count('first', 0)
+    expect_vote_count('second', 0)
   end
 end

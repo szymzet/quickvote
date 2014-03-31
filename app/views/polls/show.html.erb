@@ -5,9 +5,7 @@
   <% @poll.questions.each do |question| %>
     <li class="question">
       <%= link_to question.name, poll_vote_path(@poll, question), method: :put %>
-      <span class="votes">
-        <%= question.votes %>
-      </span>
+      <span class="votes"><%= question.votes %></span>
     </li>
   <% end %>
 </ul>
