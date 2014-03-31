@@ -4,7 +4,10 @@
 <ul id="poll">
   <% @poll.questions.each do |question| %>
     <li class="question">
-      <%= question.name %>
+      <%= link_to question.name, poll_vote_path(@poll, question), method: :put %>
+      <span class="votes">
+        <%= question.votes %>
+      </span>
     </li>
   <% end %>
 </ul>
