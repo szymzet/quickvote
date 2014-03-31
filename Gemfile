@@ -10,3 +10,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
 end
+
+group :development do
+  gem 'simplecov', '~> 0.7.1'
+end
