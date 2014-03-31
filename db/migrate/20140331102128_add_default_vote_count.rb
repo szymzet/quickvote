@@ -1,5 +1,9 @@
 class AddDefaultVoteCount < ActiveRecord::Migration
-  def change
+  def up
     change_column_default :questions, :votes, 0
+  end
+
+  def down
+    change_column_default :questions, :votes, nil
   end
 end
