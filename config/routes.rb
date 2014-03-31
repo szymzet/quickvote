@@ -1,3 +1,5 @@
 Quickvote::Application.routes.draw do
-  root to: 'homes#show'
+  root to: 'polls#new'
+
+  resources :polls, only: [:new, :create, :show]
 end

@@ -1,0 +1,13 @@
+<h1>Quickvote - fast poll creator</h1>
+<%= form_for @poll do |form| %>
+  <div>
+    <%= form.label :title, 'Poll title' %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= text_field_tag :questions_string %>
+  </div>
+  <div>
+    <%= form.submit 'Create poll' %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+<h2>
+  <%= @poll.title %>
+</h2>
+<ul id="poll">
+  <% @poll.questions.each do |question| %>
+    <li class="question">
+      <%= question.name %>
+    </li>
+  <% end %>
+</ul>
+
