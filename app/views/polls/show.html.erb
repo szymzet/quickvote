@@ -10,6 +10,10 @@
   </h2>
 </div>
 
+<% if already_voted?(@poll) %>
+  <div id="already-voted" class="alert alert-info">You have already voted</div>
+<% end %>
+
 <div id="poll" class="list-group">
   <% @poll.questions.each do |question| %>
     <%= link_to poll_vote_path(@poll, question),
