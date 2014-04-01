@@ -21,4 +21,13 @@ module PollHelper
     votes = find('#poll .question', text: name).find('.votes')
     expect(votes.text.to_i).to eq expected_votes.to_i
   end
+
+  def expect_most_voted_question(name, expected_votes)
+    most_voted_question = find('#most-votes')
+    expect(most_voted_question.text).to match(/\b#{name}\b.*\b#{expected_votes}\b/)
+  end
+
+  def expect_no_most_voted_question
+    expect(page).to have_no_selector('#most-votes')
+  end
 end

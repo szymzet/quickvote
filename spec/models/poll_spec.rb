@@ -30,4 +30,24 @@ describe Poll do
       expect(Poll.find_by_hashed_id(poll.hashed_id)).to eq(poll)
     end
   end
+
+  describe '#most_voted_question' do
+    it 'Finds a question with most votes' do
+      poll = Poll.create!(title: 'xd')
+      most_voted = Question.new(name: 'most voted', votes: 5)
+      poll.questions << Question.new(name: 'no votes', votes: 0)
+      poll.questions << most_voted
+      poll.questions << Question.new(name: 'less votes', votes: 1)
+
+      expect(poll.most_voted_question).to eq most_voted
+    end
+
+    it 'Returns nil when a tie' do
+      poll = Poll.create!(title: 'xd')
+      poll.questions << Question.new(name: 'a', votes: 4)
+      poll.questions << Question.new(name: 'b', votes: 4)
+
+      expect(poll.most_voted_question).to be_nil
+    end
+  end
 end

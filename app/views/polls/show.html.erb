@@ -1,11 +1,24 @@
 <div class="page-header">
-    <h2><%= @poll.title %></h2>
+  <h2>
+    <%= @poll.title %>
+    <% if @poll.most_voted_question %>
+      <span id="most-votes" class="small pull-right">
+        most votes: &ldquo;<%= @poll.most_voted_question.name %>&rdquo;
+        with <%= @poll.most_voted_question.votes %>
+      </span>
+    <% end %>
+  </h2>
 </div>
+
 <div id="poll" class="list-group">
   <% @poll.questions.each do |question| %>
-    <%= link_to poll_vote_path(@poll, question), method: :put, class: 'question list-group-item' do %>
+    <%= link_to poll_vote_path(@poll, question),
+      method: :put, class: 'question list-group-item' do %>
+
       <%= question.name %>
       <span class="votes badge"><%= question.votes %></span>
+
     <% end %>
   <% end %>
-</ul>
+</div>
+

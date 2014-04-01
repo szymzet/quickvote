@@ -11,4 +11,20 @@ feature 'Vote on poll' do
     expect_vote_count('first', 0)
     expect_vote_count('second', 1)
   end
+
+  scenario 'Show `most votes` when no tie' do
+    visit root_path
+    create_poll('Choose', 'first, second, third')
+    click_on('first')
+    click_on('first')
+    expect_most_voted_question('first', 2)
+  end
+
+  scenario 'Do not show `most votes` when tied' do
+    visit root_path
+    create_poll('Choose', 'first, second, third')
+    click_on('first')
+    click_on('second')
+    expect_no_most_voted_question
+  end
 end
