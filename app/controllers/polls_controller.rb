@@ -7,11 +7,11 @@ class PollsController < ApplicationController
     poll = Poll.new(poll_params)
     poll.questions_from_string(params[:questions_string])
     poll.save
-    redirect_to poll
+    redirect_to hashed_poll_path(poll.hashed_id)
   end
 
   def show
-    @poll = Poll.find(params[:id])
+    @poll = Poll.find_by_hashed_id(params[:id_hash])
   end
 
   private

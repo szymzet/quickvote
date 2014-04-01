@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
+gem 'hashids', '~> 0.3.0'
 
 group :test, :development do
   gem 'rspec-rails'
