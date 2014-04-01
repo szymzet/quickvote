@@ -1,12 +1,11 @@
-<h2>
-  <%= @poll.title %>
-</h2>
-<ul id="poll">
+<div class="page-header">
+    <h2><%= @poll.title %></h2>
+</div>
+<div id="poll" class="list-group">
   <% @poll.questions.each do |question| %>
-    <li class="question">
-      <%= link_to question.name, poll_vote_path(@poll, question), method: :put %>
-      <span class="votes"><%= question.votes %></span>
-    </li>
+    <%= link_to poll_vote_path(@poll, question), method: :put, class: 'question list-group-item' do %>
+      <%= question.name %>
+      <span class="votes badge"><%= question.votes %></span>
+    <% end %>
   <% end %>
 </ul>
-

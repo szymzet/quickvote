@@ -1,13 +1,16 @@
-<h1>Quickvote - fast poll creator</h1>
+<div class="page-header">
+    <h1>Quickvote - fast poll creator</h1>
+</div>
 <%= form_for @poll do |form| %>
-  <div>
-    <%= form.label :title, 'Poll title' %>
-    <%= form.text_field :title %>
+  <div class='form-group'>
+    <%= form.text_field :title, placeholder: 'Poll title', class: 'form-control input-lg' %>
   </div>
-  <div>
-    <%= text_field_tag :questions_string %>
+  <div class='form-group'>
+      <%= text_field_tag :questions_string, '',
+          placeholder: 'Options separated by commas, eg. today, tommorow, never',
+          class: 'form-control input-lg' %>
   </div>
-  <div>
-    <%= form.submit 'Create poll' %>
+  <div class='form-group'>
+    <%= form.submit 'Create poll', class: 'btn btn-primary btn-lg btn-block' %>
   </div>
 <% end %>

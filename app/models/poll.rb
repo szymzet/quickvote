@@ -2,7 +2,7 @@ class Poll < ActiveRecord::Base
   has_many :questions
 
   def self.find_by_hashed_id(hashed_id)
-    find(self.hasher.decrypt(hashed_id).first)
+    find(hasher.decrypt(hashed_id).first)
   end
 
   def self.hasher
