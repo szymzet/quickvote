@@ -1,5 +1,7 @@
 module ApplicationHelper
+  include VotingGuard
+
   def already_voted?(poll)
-    (cookies.signed[:voted_for] ||= '').split(',').include?(poll.id.to_s)
+    voted_for?(poll.id)
   end
 end
