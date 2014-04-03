@@ -4,15 +4,11 @@ class PollsController < ApplicationController
   end
 
   def create
-    poll = Poll.new(poll_params)
-    poll.questions_from_string(params[:questions_string])
+    poll = poll_from_params
     if poll.save
-      redirect_to hashed_poll_path(poll.hashed_id)
-    else
-      flash[:alert] = poll.errors.full_messages.to_sentence
-      @poll = poll
-      redirect_to new_poll_path
+      return redirect_to hashed_poll_path(poll.hashed_id)
     end
+    validation_error(poll)
   end
 
   def show
@@ -23,5 +19,17 @@ class PollsController < ApplicationController
 
   def poll_params
     params.require(:poll).permit(:title)
+  end
+
+  def poll_from_params
+    poll = Poll.new(poll_params)
+    poll.questions_from_string(params[:questions_string])
+    poll
+  end
+
+  def validation_error(poll)
+    flash[:alert] = poll.errors.full_messages.to_sentence
+    @poll = poll
+    redirect_to new_poll_path
   end
 end
