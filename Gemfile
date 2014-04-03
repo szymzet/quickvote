@@ -10,6 +10,7 @@ gem 'hashids', '~> 0.3.0'
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'shoulda-matchers'
 end
 
 group :development do

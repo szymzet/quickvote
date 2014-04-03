@@ -28,4 +28,10 @@ feature 'Create a poll' do
 
     expect(URI(current_url).path).to match(/^\/[a-zA-Z0-9]{8}$/)
   end
+
+  scenario 'Poll has too short title' do
+    create_poll('A', 'first, second')
+
+    expect(page).to have_content('Title is too short')
+  end
 end

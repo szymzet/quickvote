@@ -1,5 +1,6 @@
 class Poll < ActiveRecord::Base
   has_many :questions
+  validates :title, presence: true, length: { minimum: 2, maximum: 240 }
 
   def self.find_by_hashed_id(hashed_id)
     find(hasher.decrypt(hashed_id).first)

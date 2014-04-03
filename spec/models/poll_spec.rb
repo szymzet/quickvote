@@ -19,7 +19,7 @@ describe Poll do
 
   describe '#hashed_id' do
     it 'Returns a hash of the ID' do
-      poll = Poll.create!
+      poll = Poll.create!(title: 'title')
       expect(poll.hashed_id).to match(/[a-zA-Z0-9]{8}/)
     end
   end
@@ -49,5 +49,11 @@ describe Poll do
 
       expect(poll.most_voted_question).to be_nil
     end
+  end
+
+  describe 'validations' do
+    it { expect(Poll.new).to validate_presence_of(:title) }
+    it { expect(Poll.new).to ensure_length_of(:title).is_at_least(2) }
+    it { expect(Poll.new).to ensure_length_of(:title).is_at_most(240) }
   end
 end
