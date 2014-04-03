@@ -6,7 +6,7 @@ class PollsController < ApplicationController
   def create
     poll = poll_from_params
     if poll.save
-      return redirect_to hashed_poll_path(poll.hashed_id)
+      return valid_poll(poll)
     end
     validation_error(poll)
   end
@@ -31,5 +31,13 @@ class PollsController < ApplicationController
     flash[:alert] = poll.errors.full_messages.to_sentence
     @poll = poll
     redirect_to new_poll_path
+  end
+
+  def valid_poll(poll)
+    flash[:notice] = {
+        msg: "You can share this poll with others by using unique address: ",
+        url: "#{hashed_poll_url(poll.hashed_id)}"
+      }
+    redirect_to hashed_poll_path(poll.hashed_id)
   end
 end

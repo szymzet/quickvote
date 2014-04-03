@@ -29,6 +29,13 @@ feature 'Create a poll' do
     expect(URI(current_url).path).to match(/^\/[a-zA-Z0-9]{8}$/)
   end
 
+  scenario 'User is prompted with poll URL for sharing' do
+    create_poll('Awesome poll', 'awesome, lame, weak')
+
+    expect(page).to have_content("You can share this poll with others by using unique address:")
+    expect(page.find("input.copyable").value).to eq(current_url)
+  end
+
   scenario 'Poll has too short title' do
     create_poll('A', 'first, second')
 

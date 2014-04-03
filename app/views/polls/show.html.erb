@@ -14,6 +14,13 @@
   <div id="already-voted" class="alert alert-info">You have already voted</div>
 <% end %>
 
+<% if flash[:notice] && flash[:notice][:msg] && flash[:notice][:url] %>
+  <div class="alert alert-info">
+    <%= flash[:notice][:msg] %>
+    <input type="text" readonly="readonly" value="<%= flash[:notice][:url] %>" class="copyable" />
+  </div>
+<% end %>
+
 <div id="poll" class="list-group">
   <% @poll.questions.each do |question| %>
     <%= link_to poll_vote_path(@poll, question),

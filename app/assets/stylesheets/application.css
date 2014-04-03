@@ -12,3 +12,9 @@
  *= require_self
  *= require_tree .
  */
+
+input.copyable {
+  font-weight: bold;
+  font-family: monospace;
+  width: 300px;
+}
