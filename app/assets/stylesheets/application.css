@@ -18,3 +18,7 @@ input.copyable {
   font-family: monospace;
   width: 300px;
 }
+
+.login {
+  padding: 10px 0;
+}

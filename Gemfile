@@ -6,11 +6,14 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'hashids', '~> 0.3.0'
+gem 'omniauth-google-oauth2'
+gem 'devise'
 
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'shoulda-matchers'
+  gem 'dotenv-rails'
 end
 
 group :development do
