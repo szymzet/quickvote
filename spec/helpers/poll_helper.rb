@@ -7,9 +7,10 @@ module PollHelper
     questions.each { |question| expect_poll_question(question) }
   end
 
-  def create_poll(title, questions)
+  def create_poll(title, questions, options = {})
     fill_in('Poll title', with: title)
     fill_in('questions_string', with: questions)
+    check('Only logged in users can vote') if options[:require_login]
     click_button('Create poll')
   end
 

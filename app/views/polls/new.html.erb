@@ -10,6 +10,10 @@
           placeholder: 'Options separated by commas, eg. today, tommorow, never',
           class: 'form-control input-lg' %>
   </div>
+  <div class="form-group">
+      <%= form.check_box :require_login %>
+      <%= form.label :require_login, 'Only logged in users can vote' %>
+  </div>
   <div class='form-group'>
     <%= form.submit 'Create poll', class: 'btn btn-primary btn-lg btn-block' %>
   </div>

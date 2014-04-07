@@ -3,8 +3,12 @@ class VotesController < ApplicationController
 
   def update
     poll = Poll.find(params[:poll_id])
-    vote_for_question(poll, params[:id])
-    redirect_to hashed_poll_path(poll.hashed_id)
+    if !poll.require_login || user_signed_in?
+      vote_for_question(poll, params[:id])
+    else
+      flash[:alert] = 'Logging in is required before taking part in this poll'
+    end
+    return redirect_to hashed_poll_path(poll.hashed_id)
   end
 
   private

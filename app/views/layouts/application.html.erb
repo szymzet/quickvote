@@ -11,14 +11,15 @@
 <div class="container">
 
   <div class="login small pull-right">
-      <% if user_signed_in? %>
-        <%= current_user.email %> | <%= link_to 'log out', destroy_user_session_path %>
-      <% else %>
-        <%= link_to 'Log in using Google', user_omniauth_authorize_path(:google_oauth2) %>
-      <% end %>
-    </div>
+    <% if user_signed_in? %>
+      <%= current_user.email %> | <%= link_to 'log out', destroy_user_session_path %>
+    <% else %>
+      <%= link_to 'Log in using Google', user_omniauth_authorize_path(:google_oauth2) %>
+    <% end %>
+  </div>
 
   <% if flash[:alert] %>
+    <div class="clearfix"></div>
     <div class="alert alert-danger">
       <%= flash[:alert] %>
     </div>
