@@ -7,7 +7,7 @@ class Poll < ActiveRecord::Base
   end
 
   def self.hasher
-    Hashids.new('This is quickvote app! - salt', 8)
+    Hashids.new(ENV['HASHIDS_SALT'], 8)
   end
 
   def questions_from_string(questions_string)
