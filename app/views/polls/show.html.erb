@@ -10,7 +10,7 @@
   </h2>
 </div>
 
-<% if already_voted?(@poll) %>
+<% if voted_for?(@poll) %>
   <div id="already-voted" class="alert alert-info">You have already voted</div>
 <% end %>
 

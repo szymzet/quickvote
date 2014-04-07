@@ -31,4 +31,13 @@ module PollHelper
   def expect_no_most_voted_question
     expect(page).to have_no_selector('#most-votes')
   end
+
+  def log_in_as(email)
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.add_mock(
+      :google_oauth2,
+      { uid: '123456', info: { email: email } })
+
+    click_on 'Log in using Google'
+  end
 end

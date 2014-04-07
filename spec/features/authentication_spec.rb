@@ -4,14 +4,10 @@ require_relative '../helpers/poll_helper'
 feature 'User authentication' do
   include PollHelper
 
-  scenario 'User can log in and out with Google account' do
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.add_mock(
-      :google_oauth2,
-      { uid: '123456', info: { email: 'person@gmail.com' } })
+  before { visit root_path }
 
-    visit root_path
-    click_on 'Log in using Google'
+  scenario 'User can log in and out with Google account' do
+    log_in_as('person@gmail.com')
 
     expect(page).to have_no_content('Log in using Google')
     expect(page).to have_content('person@gmail.com')
@@ -23,7 +19,6 @@ feature 'User authentication' do
   end
 
   scenario 'Some polls require authentication to be voted for' do
-    visit root_path
     create_poll('Another poll', 'one, two, three', require_login: true)
 
     click_on 'three'

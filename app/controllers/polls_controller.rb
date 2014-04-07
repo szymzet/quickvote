@@ -1,4 +1,6 @@
 class PollsController < ApplicationController
+  include VotingGuard
+
   def new
     @poll = Poll.new
   end
