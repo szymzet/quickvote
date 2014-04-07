@@ -1,7 +1,7 @@
 module VotingGuard
   def voted_for?(poll)
-    return true if voted_for_cookie.split(',').include?(poll.id.to_s)
-    return poll.users.include?(current_user) if poll.require_login
+    return true if voting_cookie_include?(poll.id)
+    return poll.voted_by_user?(current_user) if poll.require_login
     false
   end
 
@@ -17,5 +17,9 @@ module VotingGuard
 
   def voted_for_cookie
     cookies.signed[:voted_for] ||= ''
+  end
+
+  def voting_cookie_include?(poll_id)
+    voted_for_cookie.split(',').include?(poll_id.to_s)
   end
 end

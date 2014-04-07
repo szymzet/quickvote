@@ -25,7 +25,6 @@ class VotesController < ApplicationController
       flash[:alert] = 'Logging in is required before taking part in this poll'
       return
     end
-
     vote_for_question(poll, params[:id])
   end
 end

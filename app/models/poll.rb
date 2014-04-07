@@ -23,9 +23,13 @@ class Poll < ActiveRecord::Base
     self.class.hasher.encrypt(self.id)
   end
 
-   def most_voted_question
-     most_voted = questions.max_by { |q| q.votes }
-     return most_voted if questions.one? { |q| q.votes == most_voted.votes }
-     nil
-   end
+  def most_voted_question
+   most_voted = questions.max_by { |q| q.votes }
+   return most_voted if questions.one? { |q| q.votes == most_voted.votes }
+   nil
+  end
+
+  def voted_by_user?(user)
+    self.users.include?(user)
+  end
 end
