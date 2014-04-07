@@ -14,10 +14,10 @@
   <div id="already-voted" class="alert alert-info">You have already voted</div>
 <% end %>
 
-<% if flash[:notice] && flash[:notice][:msg] && flash[:notice][:url] %>
+<% if flash[:poll_share_info] %>
   <div class="alert alert-info">
-    <%= flash[:notice][:msg] %>
-    <input type="text" readonly="readonly" value="<%= flash[:notice][:url] %>" class="copyable" />
+    <%= flash[:poll_share_info][:msg] %>
+    <input type="text" readonly="readonly" value="<%= flash[:poll_share_info][:url] %>" class="copyable" />
   </div>
 <% end %>
 

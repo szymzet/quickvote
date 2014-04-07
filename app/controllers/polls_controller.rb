@@ -34,10 +34,10 @@ class PollsController < ApplicationController
   end
 
   def valid_poll(poll)
-    flash[:notice] = {
-        msg: "You can share this poll with others by using unique address: ",
-        url: "#{hashed_poll_url(poll.hashed_id)}"
-      }
+    flash[:poll_share_info] = {
+      msg: "You can share this poll with others by using unique address: ",
+      url: "#{hashed_poll_url(poll.hashed_id)}"
+    }
     redirect_to hashed_poll_path(poll.hashed_id)
   end
 end
