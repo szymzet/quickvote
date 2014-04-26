@@ -1,5 +1,7 @@
 # Quickvote - simple poll creator
 
+http://szymzet.com/quickvote
+
 Small and simple application aimed for gaining experience using Rails and some
 good Ruby and Rails practices. The application has a 100% test coverage and tries
 to stick with Sandi Metz's 4 rules:
